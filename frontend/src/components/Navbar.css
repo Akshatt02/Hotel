@@ -1,0 +1,59 @@
+/* Navbar.css */
+.navbar {
+    width: 100%; /* Full width */
+    position: fixed; /* Stick to the top */
+    top: 0;
+    left: 2;
+    background: #2c3e50;
+    padding: 15px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .logo {
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    transition: 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #f1c40f;
+  }
+  
+  .btn-booking {
+    background: #f1c40f;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+  
+  .btn-booking:hover {
+    background: #d4ac0d;
+  }
+  
+  /* Add padding to body to prevent content from being hidden behind navbar */
+  body {
+    padding-top: 40px; /* Adjust based on navbar height */
+  }
+  
