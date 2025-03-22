@@ -12,8 +12,9 @@ import './App.css'
 
   return (
     <>
-    <BookingPage/>
- <Footer/>    
+    {/* {navbar } */}
+ {/* {routes to the pages */}
+  <BookingPage/>    
      </>
   )
 }

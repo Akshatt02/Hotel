@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./BookingPage.css"; // Import CSS file
+import "./BookingPage.css";
+// import room from './image/IMG_6136.jpg'
 
 export default function BookingPage() {
   const [formData, setFormData] = useState({
@@ -18,18 +19,9 @@ export default function BookingPage() {
   return (
     <div>
       {/* Background Image with Overlay */}
-      <div className="hero-section" style={{ backgroundImage: "url('your-image-url.jpg')" }}>
+      <div className="hero-section">
         <div className="hero-overlay"></div>
 
-        {/* Hotel Description */}
-        <div className="hero-content">
-          <h1>A Royal Stay at Hotel Vithal</h1>
-          <p>
-            Welcome to Prayagraj, one of the most ancient cities in India, known for its pilgrimage
-            sites and cultural heritage. Hotel Kanha Shyam offers you a luxurious retreat near
-            Prayagraj High Court, ensuring a comfortable and relaxing stay.
-          </p>
-        </div>
 
         {/* Booking Form */}
         <div className="booking-form">
@@ -64,37 +56,57 @@ export default function BookingPage() {
 
       {/* Rooms Section */}
       <div className="section bg-gray">
-        <h2 color="blue">ROOMS</h2>
+        <h2>ROOMS</h2>
         <div className="image-gallery">
-          <img src="room1.jpg"/>
-          <img src="room2.jpg"/>
+        <img src={new URL('./image/IMG_6136.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={new URL('./image/IMG_6140.JPG', import.meta.url).href} alt="Room Image" />
         </div>
+      </div>
+
+      <div className="text1">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam deserunt quidem voluptatem officia eos similique quod officiis velit nam. At voluptate officia qui illum hic quam repellat pariatur assumenda explicabo.
+        Lorem ipsum dolor 
       </div>
 
       {/* Events Section */}
       <div className="section bg-white">
         <h2>EVENTS</h2>
         <div className="image-gallery">
-          <img src="event1.jpg"/>
-          <img src="event2.jpg"/>
+        <img src={new URL('./image/IMG_6136.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={new URL('./image/IMG_6140.JPG', import.meta.url).href} alt="Room Image" />
         </div>
       </div>
 
-      {/* Restaurants Section */}
+      <div className="text1">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam deserunt quidem voluptatem officia eos similique quod officiis velit nam. At voluptate officia qui illum hic quam repellat pariatur assumenda explicabo.
+        Lorem ipsum dolor 
+      </div>
+
+      {/* Restaurants Section */}s
       <div className="section bg-gray">
         <h2>RESTAURANTS</h2>
         <div className="image-gallery">
-          <img src="restaurant1.jpg"/>
-          <img src="restaurant2.jpg"/>
+        <img src={new URL('./image/IMG_6136.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={new URL('./image/IMG_6140.JPG', import.meta.url).href} alt="Room Image" />
         </div>
+      </div>
+
+      <div className="text1">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam deserunt quidem voluptatem officia eos similique quod officiis velit nam. At voluptate officia qui illum hic quam repellat pariatur assumenda explicabo.
+        Lorem ipsum dolor 
       </div>
 
       <div className="section bg-gray">
         <h2>OTHER FACITLITIES</h2>
         <div className="image-gallery">
-          <img src="facility1.jpg"/>
-          <img src="facility2.jpg"/>
+        <img src={new URL('./image/IMG_6136.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={new URL('./image/IMG_6140.JPG', import.meta.url).href} alt="Room Image" />
         </div>
+      </div>
+
+      <div className="text1">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam deserunt quidem voluptatem officia eos similique quod officiis velit nam. At voluptate officia qui illum hic quam repellat pariatur assumenda explicabo.
+        Lorem ipsum dolor 
       </div>
 
     </div>
