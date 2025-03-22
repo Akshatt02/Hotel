@@ -25,7 +25,7 @@ const rooms = [
 		name: "Super Deluxe",
 		image: "/images/royal-club.jpg",
 		description: "An elite room offering the highest level of luxury and service.",
-		link: "/rooms/royal-club",
+		link: "/rooms/super-deluxe",
 	},
 ];
 
