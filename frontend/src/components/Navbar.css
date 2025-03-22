@@ -1,59 +1,82 @@
 /* Navbar.css */
+
 .navbar {
-    width: 100%; /* Full width */
-    position: fixed; /* Stick to the top */
-    top: 0;
-    left: 2;
-    background: #2c3e50;
-    padding: 15px 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px; /* Increased padding for better spacing */
+  background-color: #1e293b; /* Dark navy blue */
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Keeps it above other elements */
+  box-sizing: border-box; /* Ensures padding doesn’t overflow */
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  font-size: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #38bdf8; /* Tailwind sky-400 */
+}
+
+.btn-booking {
+  padding: 8px 15px;
+  background-color: #f59e0b; /* Tailwind amber-500 */
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn-booking:hover {
+  background-color: #d97706; /* Darker shade on hover */
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 30px; /* Reduce padding on smaller screens */
   }
-  
-  .logo {
-    color: #fff;
-    font-size: 22px;
-    font-weight: bold;
-  }
-  
+
   .nav-links {
-    list-style: none;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #1e293b;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .nav-links.active {
     display: flex;
-    gap: 20px;
   }
-  
-  .nav-links li {
-    display: inline;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 18px;
-    transition: 0.3s;
-  }
-  
-  .nav-links a:hover {
-    color: #f1c40f;
-  }
-  
-  .btn-booking {
-    background: #f1c40f;
-    padding: 8px 15px;
-    border-radius: 5px;
-    color: #2c3e50;
-    font-weight: bold;
-  }
-  
-  .btn-booking:hover {
-    background: #d4ac0d;
-  }
-  
-  /* Add padding to body to prevent content from being hidden behind navbar */
-  body {
-    padding-top: 40px; /* Adjust based on navbar height */
-  }
-  
+}
+
+/* Prevent content from going under navbar */
+body {
+  padding-top: 70px;
+}

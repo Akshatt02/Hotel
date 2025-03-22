@@ -1,0 +1,81 @@
+/* Footer Styling */
+.footer {
+    background-color: #003366;
+    /* Deep Blue */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Top Section */
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Footer Sections */
+.footer-section {
+    width: 30%;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+/* Headings */
+.footer-section h3 {
+    font-size: 20px;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Links */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #f8d210;
+    /* Golden Hover Effect */
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+    color: #f8d210;
+    /* Golden Hover */
+}
+
+/* Bottom Section */
+.footer-bottom {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid white;
+}
