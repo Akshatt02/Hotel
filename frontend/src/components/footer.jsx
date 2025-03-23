@@ -12,7 +12,7 @@ export default function Footer() {
           <h3>Hotel Vithal International, Prayagraj</h3>
           <p>22/1, Strachey Road, Civil Lines, Prayagraj - 211001</p>
           <p>📞 +91 12345 67890</p>
-          <p>📧 contact@kanhashyam.com</p>
+          <p>📧 contact@hotelvithal.com</p>
         </div>
 
         {/* Quick Links */}

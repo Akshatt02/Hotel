@@ -1,6 +1,7 @@
 /* Modern Booking Container */
 .booking-container {
     width: 60%;
+    height: 80%;
     max-width: 900px;
     margin: auto;
     background: #ffffff;

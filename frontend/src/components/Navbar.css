@@ -40,18 +40,18 @@
 }
 
 .nav-links a:hover {
-  color: #38bdf8; /* Tailwind sky-400 */
+  color: #a7dcf3; /* Tailwind sky-400 */
 }
 
 .btn-booking {
   padding: 8px 15px;
-  background-color: #f59e0b; /* Tailwind amber-500 */
+  background-color: #f59e0b;
   border-radius: 5px;
   font-weight: bold;
 }
 
 .btn-booking:hover {
-  background-color: #d97706; /* Darker shade on hover */
+  background-color: #d97706;
 }
 
 /* Responsive Navbar */
