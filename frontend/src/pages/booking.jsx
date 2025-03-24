@@ -4,8 +4,8 @@ import "./booking.css";
 const roomTypes = [
     { name: "Deluxe Room", price: 5000 },
     { name: "Club Room", price: 7000 },
-    { name: "Suite", price: 10000 },
-    { name: "Royal Club", price: 2000 },
+    { name: "Suite Room", price: 10000 },
+    { name: "Royal Club", price: 20000 },
 ];
 
 const Booking = () => {
@@ -24,64 +24,6 @@ const Booking = () => {
             setRooms(rooms.filter((_, i) => i !== index));
         }
     };
-
-    const loadRazorpay = async () => {
-        try {
-            const response = await fetch("http://localhost:5000/api/payments/create-order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    amount: grandTotal,
-                    currency: "INR",
-                    bookingDetails: {
-                        guestInfo,
-                        selectedRooms,
-                        totalRooms: totalRoomsSelected,
-                        checkIn: dates.checkIn,
-                        checkOut: dates.checkOut,
-                        totalAdults,
-                        totalChildren,
-                        nights,
-                    },
-                }),
-            });
-            const order = await response.json();
-            const options = {
-                key: "YOUR_RAZORPAY_KEY_ID",
-                amount: order.amount,
-                currency: order.currency,
-                name: "Client's Hotel Name",
-                description: "Hotel Booking Payment",
-                order_id: order.id,
-                handler: async function (paymentResponse) {
-                    const verifyResponse = await fetch("http://localhost:5000/api/payments/verify-payment", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(paymentResponse),
-                    });
-
-                    const verifyResult = await verifyResponse.json();
-                    if (verifyResult.success) {
-                        alert("Payment successful! 🎉 Booking confirmed.");
-                    } else {
-                        alert("Payment verification failed! ❌");
-                    }
-                },
-                prefill: {
-                    name: guestInfo.name,
-                    email: guestInfo.email,
-                    contact: guestInfo.phone,
-                },
-                theme: { color: "#0073e6" },
-            };
-
-            const rzp = new window.Razorpay(options);
-            rzp.open();
-        } catch (error) {
-            console.error("Error initiating payment:", error);
-        }
-    };
-
 
     const updateRoom = (index, field, value) => {
         const updatedRooms = [...rooms];
@@ -107,15 +49,7 @@ const Booking = () => {
     const totalRoomsSelected = rooms.length;
     const totalAdults = rooms.reduce((sum, room) => sum + room.adults, 0);
     const totalChildren = rooms.reduce((sum, room) => sum + room.children, 0);
-    const nights =
-        dates.checkIn && dates.checkOut
-            ? Math.max(
-                Math.round(
-                    (new Date(dates.checkOut) - new Date(dates.checkIn)) / (1000 * 60 * 60 * 24)
-                ),
-                1
-            )
-            : 1;
+    const nights = dates.checkIn && dates.checkOut ? Math.max(Math.round((new Date(dates.checkOut) - new Date(dates.checkIn)) / (1000 * 60 * 60 * 24)), 1) : 1;
 
     const selectedRoomTypes = Object.entries(selectedRooms)
         .filter(([roomName, qty]) => qty > 0)
@@ -132,6 +66,80 @@ const Booking = () => {
     const grandTotal = subtotal + taxes;
     const discount = 0;
 
+    const handleBooking = async () => {
+        try {
+            const payload = {
+                name: guestInfo.name,
+                email: guestInfo.email,
+                phone: guestInfo.phone,
+                roomType: selectedRoomTypes.map(({ name, qty }) => ({ name, qty })),
+                adults: totalAdults,
+                children: totalChildren,
+                checkIn: dates.checkIn,
+                checkOut: dates.checkOut,
+                subtotal,
+                taxes,
+                grandTotal,
+            };
+            const bookingResponse = await fetch("http://localhost:5000/api/bookings/create", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            //yaha se dekhna hai wapas iske alawa sab badhiya chal raha hai
+            const bookingData = await bookingResponse.json();
+            const orderResponse = await fetch("http://localhost:5000/api/payments/create", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    amount: grandTotal,
+                    currency: "INR",
+                    bookingId: bookingData.bookingId,
+                }),
+            });
+            const orderData = await orderResponse.json();
+
+            const options = {
+                key: "YOUR_RAZORPAY_KEY_ID",
+                amount: orderData.amount,
+                currency: orderData.currency,
+                name: "Hotel Booking",
+                description: "Complete your payment",
+                order_id: orderData.id,
+                handler: async function (response) {
+                    const verifyResponse = await fetch("http://localhost:5000/api/payments/verify", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature,
+                        }),
+                    });
+
+                    const verifyResult = await verifyResponse.json();
+                    if (verifyResult.success) {
+                        alert("Payment successful! Booking confirmed.");
+                    } else {
+                        alert("Payment verification failed!");
+                    }
+                },
+                prefill: {
+                    name: guestInfo.name,
+                    email: guestInfo.email,
+                    contact: guestInfo.phone,
+                },
+                theme: { color: "#3399cc" },
+            };
+            const rzp = new window.Razorpay(options);
+            rzp.open();
+        } catch (error) {
+            console.error("Error processing booking:", error);
+            alert("Something went wrong. Please try again.");
+        }
+    };
+
     return (
         <div className="booking-container">
             <h1 className="booking-title">Reservations</h1>
@@ -146,6 +154,7 @@ const Booking = () => {
                             name="checkIn"
                             value={dates.checkIn}
                             onChange={handleDateChange}
+                            min={new Date().toISOString().split("T")[0]}
                         />
                         <label>To</label>
                         <input
@@ -153,6 +162,7 @@ const Booking = () => {
                             name="checkOut"
                             value={dates.checkOut}
                             onChange={handleDateChange}
+                            min={dates.checkIn || new Date().toISOString().split("T")[0]}
                         />
                     </div>
 
@@ -203,14 +213,15 @@ const Booking = () => {
 
                     <div className="promo-code">
                         <input type="text" placeholder="Promo Code (Optional)" />
-                        <button
-                            className="next-step"
-                            onClick={() => setStep(2)}
-                            disabled={!dates.checkIn || !dates.checkOut}
-                        >
-                            Next
-                        </button>
+
                     </div>
+                    <button
+                        className="next-step"
+                        onClick={() => setStep(2)}
+                        disabled={!dates.checkIn || !dates.checkOut}
+                    >
+                        Next
+                    </button>
                 </div>
             )}
 
@@ -299,7 +310,7 @@ const Booking = () => {
                                 <a href="#">Terms & Conditions</a>
                             </p>
                             <div>
-                                <button className="book-now-btn">Book Now</button>
+                                <button className="book-now-btn" onClick={handleBooking}>Book Now</button>
                             </div>
                             <div className="payment-icons">
                                 <img src="visa-icon.png" alt="Visa" />

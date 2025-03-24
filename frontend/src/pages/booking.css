@@ -40,27 +40,46 @@
 }
 
 /* Date Selection */
+/* Date Selection Container */
 .date-selection {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 25px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.08);
 }
 
+/* Date Labels */
 .date-selection label {
     font-weight: 600;
-    color: #34495e;
+    color: #2c3e50;
     flex: 1;
-    min-width: 60px;
+    min-width: 70px;
+    font-size: 16px;
 }
 
+/* Date Input Fields */
 .date-selection input {
     flex: 2;
     padding: 12px;
     border: 1px solid #bdc3c7;
-    border-radius: 5px;
-    min-width: 150px;
+    border-radius: 6px;
+    min-width: 160px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background: white;
+}
+
+/* Focus Effect */
+.date-selection input:focus {
+    border-color: #0073e6;
+    box-shadow: 0 0 6px rgba(0, 115, 230, 0.3);
 }
 
 /* Room Selection */
@@ -147,32 +166,49 @@
     background: #c0392b;
 }
 
+/* Promo Code Input */
 .promo-code {
+    margin-top: 15px;
     display: flex;
-    gap: 12px;
-    margin-top: 20px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .promo-code input {
-    flex: 1;
+    width: 100%;
     padding: 12px;
-    border: 1px solid #bdc3c7;
-    border-radius: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s ease-in-out;
 }
 
+.promo-code input:focus {
+    border-color: #0073e6;
+}
+
+/* Next Step Button */
 .next-step {
-    background: #2980b9;
-    color: #fff;
-    padding: 12px 18px;
+    background: #0073e6;
+    color: white;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 15px;
+    transition: background 0.1s ease-in-out;
 }
 
 .next-step:hover {
-    background: #1c5980;
+    background: #005bb5;
+}
+
+.next-step:disabled {
+    background: #ccc;
+    cursor: not-allowed;
 }
 
 /* Room Type Selection */

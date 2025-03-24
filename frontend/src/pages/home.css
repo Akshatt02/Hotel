@@ -85,6 +85,7 @@ body {
 }
 
 .booking-form button {
+    margin-top: 15px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -93,7 +94,7 @@ body {
     border-radius: 5px;
     width: 100%;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.1s ease;
 }
 
 .booking-form button:hover {

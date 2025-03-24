@@ -21,6 +21,7 @@ export const createOrder = async (req, res) => {
         };
 
         const order = await razorpay.orders.create(options);
+        await Booking.findByIdAndUpdate(bookingId, { razorpay_order_id: order.id });
         res.json(order);
     } catch (error) {
         res.status(500).json({ error: "Failed to create order" });
@@ -31,10 +32,7 @@ export const verifyPayment = async (req, res) => {
     try {
         const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
 
-        const generated_signature = crypto
-            .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
-            .update(razorpay_order_id + "|" + razorpay_payment_id)
-            .digest("hex");
+        const generated_signature = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET).update(razorpay_order_id + "|" + razorpay_payment_id).digest("hex");
 
         if (generated_signature === razorpay_signature) {
             await Booking.findOneAndUpdate(

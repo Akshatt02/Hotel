@@ -3,8 +3,8 @@ import Booking from "../models/Booking.js";
 export const createBooking = async (req, res) => {
     try {
         const booking = new Booking(req.body);
-        await booking.save();
-        res.status(201).json({ message: "Booking saved successfully", booking });
+        const savedBooking = await booking.save();
+        res.status(201).json({ message: "Booking saved successfully", bookingId: savedBooking._id });
     } catch (error) {
         res.status(500).json({ error: "Error saving booking" });
     }
