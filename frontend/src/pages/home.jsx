@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./home.css";
 
 // Import Images
-import clubImg from "./image/club.JPG";
-import royalClubImg from "./image/royal-club.JPG";
-import suiteImg from "./image/suite.JPG";
-import deluxeImg from "./image/deluxe.JPG";
+const clubImg = "/images/club.jpg";
+const royalClubImg = "/images/royal-club.jpg";
+const suiteImg = "/images/suite.jpg";
+const deluxeImg = "./images/deluxe.jpg";
 
 export default function BookingPage() {
 	const navigate = useNavigate();

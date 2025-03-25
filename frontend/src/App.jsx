@@ -9,10 +9,12 @@ import Booking from "./pages/booking";
 import FacilitiesPage from "./pages/facility";
 import Home from "./pages/home";
 import Footer from './components/footer';
+import ScrollToTop from './components/scrollToTop';
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -19,7 +19,7 @@ body {
     color: white;
     padding: 20px;
     background-color: rgb(242, 240, 245);
-    background-image: url('./image/deluxe.jpg');
+    background-image: url('/images/deluxe.jpg');
 }
 
 .hero-overlay {

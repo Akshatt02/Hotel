@@ -63,8 +63,9 @@ const Booking = () => {
         0
     );
     const taxes = subtotal * 0.18;
-    const grandTotal = subtotal + taxes;
-    const discount = 0;
+    let grandTotal = subtotal + taxes;
+    const discount = grandTotal * 0.05;
+    grandTotal -= discount;
 
     const handleBooking = async () => {
         try {
@@ -81,7 +82,8 @@ const Booking = () => {
                 taxes,
                 grandTotal,
             };
-            const bookingResponse = await fetch("http://localhost:5000/api/bookings/create", {
+            const backURL = import.meta.env.VITE_BACK_URL;
+            const bookingResponse = await fetch(`${backURL}bookings/create`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
@@ -89,7 +91,7 @@ const Booking = () => {
 
             //yaha se dekhna hai wapas iske alawa sab badhiya chal raha hai
             const bookingData = await bookingResponse.json();
-            const orderResponse = await fetch("http://localhost:5000/api/payments/create", {
+            const orderResponse = await fetch(`${backURL}payments/order`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -108,7 +110,7 @@ const Booking = () => {
                 description: "Complete your payment",
                 order_id: orderData.id,
                 handler: async function (response) {
-                    const verifyResponse = await fetch("http://localhost:5000/api/payments/verify", {
+                    const verifyResponse = await fetch(`${backURL}payments/verify`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -313,12 +315,12 @@ const Booking = () => {
                                 <button className="book-now-btn" onClick={handleBooking}>Book Now</button>
                             </div>
                             <div className="payment-icons">
-                                <img src="visa-icon.png" alt="Visa" />
-                                <img src="mastercard-icon.png" alt="MasterCard" />
-                                <img src="amex-icon.png" alt="Amex" />
-                                <img src="net-banking-icon.png" alt="Net Banking" />
+                                <img src="/images/visa.jpg" alt="Visa" />
+                                <img src="/images/mastercard.jpg" alt="MasterCard" />
+                                <img src="/images/amex.jpg" alt="Amex" />
+                                <img src="/images/netbanking.jpg" alt="Net Banking" />
                             </div>
-                            <button className="back-btn" onClick={() => setStep(2)}>← Back</button>
+                            <button className="back-btn" onClick={() => setStep(2)}>Back</button>
                         </div>
 
                         <div className="booking-summary">

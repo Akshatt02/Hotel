@@ -17,32 +17,32 @@ export default function FacilitiesPage() {
       {/* Facilities Box Layout */}
       <div className="facilities-grid">
         <div className="facility-box">
-        <img src={new URL('./image/club.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={'/images/club.jpg'} alt="Room Image" />
           <h3>Saloon & Spa</h3>
         </div>
 
         <div className="facility-box">
-        <img src={new URL('./image/club.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={'/images/club.jpg'} alt="Room Image" />
           <h3>Bar</h3>
         </div>
 
         <div className="facility-box">
-        <img src={new URL('./image/club.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={'/images/club.jpg'} alt="Room Image" />
           <h3>Board Room</h3>
         </div>
 
         <div className="facility-box">
-        <img src={new URL('./image/club.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={'/images/club.jpg'} alt="Room Image" />
           <h3>Banquet Hall</h3>
         </div>
 
         <div className="facility-box">
-        <img src={new URL('./image/club.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={'/images/club.jpg'} alt="Room Image" />
           <h3>The Gym</h3>
         </div>
 
         <div className="facility-box">
-        <img src={new URL('./image/club.JPG', import.meta.url).href} alt="Room Image" />
+        <img src={'/images/club.jpg'} alt="Room Image" />
           <h3>Travel Desk</h3>
         </div>
       </div>
