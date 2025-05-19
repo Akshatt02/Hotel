@@ -34,7 +34,7 @@ const Rooms = () => {
 
 	return (
 		<div className="rooms-container">
-			<h1 className="page-title">Rooms at Our Hotel</h1>
+			<h1 className="page-title">ROOMS AVAILABLE</h1>
 			<div className="rooms-grid">
 				{rooms.map((room, index) => (
 					<div key={index} className="room-card">

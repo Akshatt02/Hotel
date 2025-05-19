@@ -103,7 +103,7 @@ const Booking = () => {
             const orderData = await orderResponse.json();
 
             const options = {
-                key: "YOUR_RAZORPAY_KEY_ID",
+                key: import.meta.env.VITE_RAZORPAY_KEY_ID,
                 amount: orderData.amount,
                 currency: orderData.currency,
                 name: "Hotel Booking",
